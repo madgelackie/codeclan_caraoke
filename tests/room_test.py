@@ -6,16 +6,19 @@ from classes.song import Song
 class TestRoom(unittest.TestCase):
     
     def setUp(self):
-        self.room1 = Room("Sunset", 5)
-        self.room2 = Room("Sunrise", 6)
+        self.room1 = Room("Sunset", 1)
+        self.room2 = Room("Sunrise", 1)
+        self.song2 = Song("Fast Car", "Tracy Chapman")
         self.song3 = Song("All Star", "Smash Mouth")
         self.guest1 = Guest("Joni", 32, self.song3)
+        self.guest2 = Guest("Frank", 35, self.song2)
+        self.guest3 = Guest("Gem", 50, self.song3)
 
     def test_room_has_name(self):
         self.assertEqual("Sunset", self.room1.room_name)
 
     def test_room_has_capcity(self):
-        self.assertEqual(5, self.room1.capacity)
+        self.assertEqual(1, self.room1.capacity)
 
     def test_room_has_empty_guest_list(self):
         self.assertEqual(0, len(self.room1.guest_list))
@@ -36,12 +39,18 @@ class TestRoom(unittest.TestCase):
         self.room1.remove_from_guest_list(self.guest1)
         self.assertEqual(0, len(self.room1.guest_list))
 
-    # def test_see_who_is_in_room(self):
-    #     self.room1.add_to_guest_list(self.guest1)
-    #     self.assertEqual(["Joni"], self.room1.check_if_guest_in_room("Joni"))
+    def test_get_guest_list_length(self):
+        self.room1.add_to_guest_list(self.guest2)
+        self.assertEqual(1, self.room1.guest_list_length())
 
-    # def test_check_playlist_by_title(self):
-    #     self.room1.add_to_playlist(self.song3)
-    #     self.assertEqual("All Star", self.room1.playlist.title)        
+    def test_can_add_guest_to_room(self):
+        self.assertEqual("Welcome to the karaoke room", self.room2.check_before_add_to_guest_list(self.guest1))
+        
+    def test_cannot_add_guest_to_room(self):
+        self.room1.add_to_guest_list(self.guest1)
+        self.assertEqual("Sorry, room is currently full", self.room1.check_before_add_to_guest_list(self.guest1))
 
-
+    def test_cannot_add_guests_to_room(self):
+        self.room2.add_to_guest_list(self.guest1)
+        self.room2.add_to_guest_list(self.guest2)
+        self.assertEqual("Sorry, room is currently full", self.room2.check_before_add_to_guest_list(self.guest3))

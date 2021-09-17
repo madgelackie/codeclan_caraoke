@@ -15,13 +15,20 @@ class Room:
     def remove_from_guest_list(self, guest):
         self.guest_list.remove(guest)
 
-    # def view_guest_list(self):
-    #     guest_inventory = []
-    #     for guest in self.guest_list:
-    #         guest_inventory.append(guest.name)
-    #     return guest_inventory
+    def guest_list_length(self):
+        return len(self.guest_list)
 
- 
+    def check_before_add_to_guest_list(self, guest):
+        if len(self.guest_list) < self.capacity:
+            self.guest_list.append(guest)
+            return "Welcome to the karaoke room"
+        if len(self.guest_list) >= self.capacity:
+            return "Sorry, room is currently full"
+
+
+
+
+
 
 
 
