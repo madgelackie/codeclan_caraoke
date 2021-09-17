@@ -1,7 +1,3 @@
-# from song import Song
-
-# song1 = Song("Iron Man", "Black Sabbath", 3)
-
 class Room:
 
     def __init__(self, input_room_name, input_capacity):
@@ -13,16 +9,23 @@ class Room:
     def add_to_playlist(self, song):
         self.playlist.append(song)
 
-    # def check_playlist_by_title(self):
-    #     list_by_title = []
-    #     for song in playlist:
-    #         list_by_title.append(song.title)
-    #     return list_by_title
+    def add_to_guest_list(self, guest):
+        self.guest_list.append(guest)
 
-# set_up = Room("Sunset", 5)
-# set_up.add_to_playlist(song1)
-# check = set_up.check_playlist_by_title
-# print(check)
+    def remove_from_guest_list(self, guest):
+        self.guest_list.remove(guest)
+
+    # def view_guest_list(self):
+    #     guest_inventory = []
+    #     for guest in self.guest_list:
+    #         guest_inventory.append(guest.name)
+    #     return guest_inventory
+
+ 
+
+
+
+
 
 
 
