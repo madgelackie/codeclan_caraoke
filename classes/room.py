@@ -9,8 +9,12 @@ class Room:
     def add_to_playlist(self, song):
         self.playlist.append(song)
 
-    def add_to_guest_list(self, guest):
-        self.guest_list.append(guest)
+    def check_before_add_to_guest_list(self, guest):
+        if len(self.guest_list) < self.capacity:
+            self.guest_list.append(guest)
+            return "Welcome to the karaoke room"
+        if len(self.guest_list) >= self.capacity:
+            return "Sorry, room is currently full"
 
     def remove_from_guest_list(self, guest):
         self.guest_list.remove(guest)
@@ -18,12 +22,7 @@ class Room:
     def guest_list_length(self):
         return len(self.guest_list)
 
-    def check_before_add_to_guest_list(self, guest):
-        if len(self.guest_list) < self.capacity:
-            self.guest_list.append(guest)
-            return "Welcome to the karaoke room"
-        if len(self.guest_list) >= self.capacity:
-            return "Sorry, room is currently full"
+
 
 
 
