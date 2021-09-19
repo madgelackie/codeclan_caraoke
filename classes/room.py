@@ -27,12 +27,7 @@ class Room:
     def guest_list_length(self):
         return len(self.guest_list)
 
-    # def take_payment(self, guest):
-    #     # guest.pay_for_room(self, room)
-    #     self.takings += self.fee
-# how to charge customer, increase takings, ?need to include reduce customer wallet
 
- # guest.pay_for_room(self, room)
 
 
 
