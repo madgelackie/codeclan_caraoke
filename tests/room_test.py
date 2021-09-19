@@ -32,12 +32,14 @@ class TestRoom(unittest.TestCase):
 
     def test_can_add_guest_and_take_payment(self):
         self.assertEqual("Payment successful. Welcome to the karaoke room", self.room2.add_to_guest_list(self.guest1))
+        self.assertEqual(15, self.room2.takings)
 
     def test_not_added_to_guest_list(self):
         self.room2.add_to_guest_list(self.guest1)
         self.room2.add_to_guest_list(self.guest2)
         self.assertEqual("Sorry, room is currently full", self.room2.add_to_guest_list(self.guest3))
         self.assertEqual(2, len(self.room2.guest_list))
+        self.assertEqual(30, self.room2.takings)
 
     def test_payment_not_accepted(self):
         self.guest2.wallet = 5
