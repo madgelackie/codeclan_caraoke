@@ -11,12 +11,15 @@ class Room:
     def add_to_playlist(self, song):
         self.playlist.append(song)
 
-    def check_before_add_to_guest_list(self, guest):
-        if len(self.guest_list) < self.capacity:
+    def add_to_guest_list(self, guest):
+        if len(self.guest_list) < self.capacity and guest.wallet >= self.fee:
+            guest.reduce_wallet(self.fee)
             self.guest_list.append(guest)
-            return "Welcome to the karaoke room"
+            self.takings += self.fee
+            return "Payment successful. Welcome to the karaoke room"
         if len(self.guest_list) >= self.capacity:
-            return "Sorry, room is currently full"
+                return "Sorry, room is currently full"
+        return "Unable to take payment"
 
     def remove_from_guest_list(self, guest):
         self.guest_list.remove(guest)
@@ -24,9 +27,9 @@ class Room:
     def guest_list_length(self):
         return len(self.guest_list)
 
-    def take_payment(self, guest):
-        # guest.pay_for_room(self, room)
-        self.takings += self.fee
+    # def take_payment(self, guest):
+    #     # guest.pay_for_room(self, room)
+    #     self.takings += self.fee
 # how to charge customer, increase takings, ?need to include reduce customer wallet
 
  # guest.pay_for_room(self, room)
